@@ -24,33 +24,32 @@
 ;; http://docs.racket-lang.org/style/index.html
 
 
-
+(require 2htdp/image)
 
 (define (taiji r)
-  (define o1
-    (overlay/align "left" "top"
-                   (rotate 90 (wedge r 180 "solid" "white"))
-                   (circle  r "solid" "black")))
-  (define o2
-    (overlay/align/offset "right" "top"
-                          (rotate 270 (wedge (/ r 2) 180 "solid" "white"))
-                          (/ r 2) 0
-                          o1))
-  (define o3
-    (overlay/align/offset "right" "bottom"
-                          (rotate 90 (wedge (/ r 2) 180 "solid" "black"))
-                          r 0
-                          o2))
-  (define o4
+  (let* ([r2 (/ r 2)]
+         [r10 (/ r 10)]
+         [pic (overlay/align "left" "top"
+                             (rotate 90 (wedge r 180 "solid" "white"))
+                             (circle  r "solid" "black"))]
+         [pic (overlay/align/offset "right" "top"
+                                    (rotate 270 (wedge r2 180 "solid" "white"))
+                                    r2 0
+                                    pic)]
+         [pic (overlay/align/offset "right" "bottom"
+                                    (rotate 90 (wedge r2 180 "solid" "black"))
+                                    r 0
+                                    pic)]
+         [pic (overlay/align/offset "center" "center"
+                                    (circle r10 "solid" "black")
+                                    0 r2
+                                    pic)])
     (overlay/align/offset "center" "center"
-                          (circle (/ r 10) "solid" "black")
-                          0 (/ r 2)
-                          o3))
-  (overlay/align/offset "center" "center"
-                        (circle (/ r 10) "solid" "white")
-                        0 (- (/ r 2))
-                        o4)
-  )
+                          (circle r10 "solid" "white")
+                          0 (- r2)
+                          pic)))
+
+
 
 
 
