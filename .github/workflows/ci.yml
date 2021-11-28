@@ -29,7 +29,7 @@ jobs:
           ++main-xref-in \
           --redirect-main https://docs.racket-lang.org/ \
           --redirect https://docs.racket-lang.org/local-redirect/index.html \
-          scribblings/yinjing.scrbl
+          scribblings/yijing.scrbl
 
       - name: Deploy to GitHub Pages
         if: success()
