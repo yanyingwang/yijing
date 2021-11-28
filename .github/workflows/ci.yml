@@ -1,24 +1,41 @@
-on: [push, pull_request]
-name: CI
+name: main
+on:
+  push:
+    branches:
+      - "master"
 jobs:
-  build:
-    name: "Build on Racket '${{ matrix.racket-version }}' (${{ matrix.racket-variant }})"
+  main:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        racket-version: ["stable", "current"]
-        racket-variant: ["BC", "CS"]
+        racket-version: ["stable"]
+        racket-variant: ["CS"]
+    name: main
     steps:
       - uses: actions/checkout@v2
       - uses: Bogdanp/setup-racket@v0.12
         with:
           architecture: x64
-          distribution: full
+          distribution: full # or minimal
           variant: ${{ matrix.racket-variant }}
           version: ${{ matrix.racket-version }}
-      - name: Installing yijing and its dependencies
-        run: raco pkg install --no-docs --auto --name yijing
-      - name: Compiling yijing and building its docs
-        run: raco setup --check-pkg-deps --unused-pkg-deps yijing
-      - name: Testing yijing
-        run: raco test -x -p yijing
+      - name: install deps
+        run: raco pkg install --auto
+      - name: build docs
+        run: |
+          raco scribble \
+          --dest doc \
+          --dest-name index \
+          ++main-xref-in \
+          --redirect-main https://docs.racket-lang.org/ \
+          --redirect https://docs.racket-lang.org/local-redirect/index.html \
+          scribblings/yinjing.scrbl
+
+      - name: Deploy to GitHub Pages
+        if: success()
+        uses: crazy-max/ghaction-github-pages@v1.2.5
+        with:
+          target_branch: gh-pages
+          build_dir: doc
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

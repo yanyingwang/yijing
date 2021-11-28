@@ -25,6 +25,7 @@
 
 
 (require 2htdp/image)
+(provide (all-defined-out))
 
 (define (taiji r)
   (let* ([r2 (/ r 2)]
@@ -48,6 +49,42 @@
                           (circle r10 "solid" "white")
                           0 (- r2)
                           pic)))
+
+;; 两仪
+(define (yin)
+  (overlay/offset (rectangle 20 10 "solid" "black") 30 0 (rectangle 20 10 "solid" "black")))
+(define (yang)
+  (rectangle 50 10 "solid" "Dark Brown"))
+
+;; 四象
+(define (taiyang)
+  (overlay/offset (yang) 0 20 (yang)))
+(define (shaoyin)
+  (overlay/offset (yin) 0 20 (yang)))
+(define (taiyin)
+  (overlay/offset (yin) 0 20 (yin)))
+(define (shaoyang)
+  (overlay/offset (yang) 0 20 (yin)))
+
+;; 八卦
+(define (qian)
+  (overlay/offset (yang) 0 30 (taiyang)))
+(define (dui)
+  (overlay/offset (yin) 0 30 (taiyang)))
+(define (li)
+  (overlay/offset (yang) 0 30 (shaoyin)))
+(define (zhen)
+  (overlay/offset (yin) 0 30 (shaoyin)))
+(define (xun)
+  (overlay/offset (yang) 0 30 (shaoyang)))
+(define (kan)
+  (overlay/offset (yin) 0 30 (shaoyang)))
+(define (gen)
+  (overlay/offset (yang) 0 30 (taiyin)))
+(define (kun)
+  (overlay/offset (yin) 0 30 (taiyin)))
+
+
 
 
 
