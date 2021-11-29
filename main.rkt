@@ -31,7 +31,7 @@
 (define (sixiang-offset)
   (* (yao-height) 1.5))
 (define (bagua-offset)
-  (* (yao-height) 2.225))
+  (* (yao-height) 2.25))
 
 
 (define (taijibagua)
@@ -44,9 +44,7 @@
          [img (overlay/offset (dui) 0 (* (current-yijing-size) 1.75) (rotate 180 img))]
          [img (overlay/offset (xun) 0 (* (current-yijing-size) 1.6) (rotate 90 img))]
          [img (overlay/offset (zhen) 0 (* (current-yijing-size) 1.75) (rotate 180 img))])
-    (rotate 135 img))
-  )
-
+    (rotate 135 img)))
 
 (define (taiji [r (current-yijing-size)])
   (let* ([r2 (/ r 2)]
@@ -87,7 +85,7 @@
 (define (yang)
   (let* ([h (/ (current-yijing-size) 5)]
          [w (current-yijing-size)]
-         [img (rectangle w h "solid" "Dark Brown")])
+         [img (rectangle w h "solid" "black")]) ;; Dark Brown
     (append-text img 'yang)))
 
 ;; 四象
