@@ -1,5 +1,6 @@
 #lang scribble/manual
 @(require (for-label yijing
+                     2htdp/image
                      racket/base)
            scribble/eval
            scribble-rainbow-delimiters)
@@ -18,10 +19,19 @@ Chinese Yijing Icons/易经图标.
 @table-of-contents[]
 
 
+@section{Prameters}
+@defparam[current-yijing-size v (and/c real? (not/c negative?)) #:value 60]{
+Default size when generating icons.
+}
+@defparam[current-yijing-chinese-charater v boolean? #:value #t]{
+Whether generating icons within chinese charaters or not.
+}
+
+
 @section{Generating icons}
 
 @subsection{Taiji/太极}
-@defproc[(taiji [radius real?]) image?]{
+@defproc[(taiji [radius (and/c real? (not/c negative?))]) image?]{
 Constructs taiji(太极).
 @examples[#:eval (the-eval)
 (taiji 50)
