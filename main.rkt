@@ -16,7 +16,7 @@
 (define (append-text! image name)
   (let* ([width (image-width image)]
          [height (image-height image)]
-         [size (round (/ width 6)) ]
+         [size (round (/ width 4)) ]
          [offset (+ (/ height 2) size)]
          [text (text (hash-ref table name) size "black")])
     (overlay/offset text 0 (- offset) image)))
@@ -25,6 +25,27 @@
   (if (current-yijing-chinese-character)
       (append-text! img name)
       img))
+
+(define (yao-height)
+  (/ (current-yijing-size) 5))
+(define (sixiang-offset)
+  (* (yao-height) 1.5))
+(define (bagua-offset)
+  (* (yao-height) 2.225))
+
+
+(define (taijibagua)
+  (let* ([img (parameterize ([current-yijing-chinese-character #f]) (rotate 180 (taiji)))]
+         [img (above (qian) img)]
+         [img (above (kun) (rotate 180 img))]
+         [img (above (li) (rotate 90 img))]
+         [img (above (kan) (rotate 180 img))]
+         [img (overlay/offset (gen) 0 (* (current-yijing-size) 1.6) (rotate 45 img))]
+         [img (overlay/offset (dui) 0 (* (current-yijing-size) 1.75) (rotate 180 img))]
+         [img (overlay/offset (xun) 0 (* (current-yijing-size) 1.6) (rotate 90 img))]
+         [img (overlay/offset (zhen) 0 (* (current-yijing-size) 1.75) (rotate 180 img))])
+    (rotate 135 img))
+  )
 
 
 (define (taiji [r (current-yijing-size)])
@@ -51,13 +72,6 @@
                                     img)])
     (append-text img 'taiji)))
 
-
-(define (yao-height)
-  (/ (current-yijing-size) 5))
-(define (sixiang-offset)
-  (* (yao-height) 1.5))
-(define (bagua-offset)
-  (* (yao-height) 2.225))
 
 ;; 两仪
 (define (yin)

@@ -19,6 +19,10 @@ Chinese Yijing Icons/易经图标.
 @table-of-contents[]
 
 
+@examples[#:eval (the-eval)
+(taijibagua)
+]
+
 @section{Prameters}
 @defparam[current-yijing-size v (and/c real? (not/c negative?)) #:value 60]{
 Default size when generating icons.
@@ -30,6 +34,11 @@ Whether generating icons within chinese charaters or not.
 
 @section{Generating icons}
 
+@subsection{Taijibagua/太极八卦图}
+@defproc[(taijibagua) image?]{
+Constructs Taijibagua/太极八卦图.
+}
+
 @subsection{Taiji/太极}
 @defproc[(taiji [radius (and/c real? (not/c negative?))]) image?]{
 Constructs taiji(太极).
@@ -37,7 +46,6 @@ Constructs taiji(太极).
 (taiji 50)
 ]
 }
-
 @subsection{Liangyi/两仪}
 @deftogether[(
 @defproc[(yin) image?]
