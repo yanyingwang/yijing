@@ -25,10 +25,10 @@ Chinese Yijing Icons/易经图标.
 
 @section{Prameters}
 @defparam[current-yijing-size v (and/c real? (not/c negative?)) #:value 60]{
-Default size when generating icons.
+Set generated icons's default size.
 }
 @defparam[current-yijing-chinese-charater v boolean? #:value #t]{
-Whether generating icons within chinese charaters or not.
+Set generated icons to whether include chinese charaters or not.
 }
 
 
