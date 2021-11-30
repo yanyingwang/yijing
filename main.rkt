@@ -11,7 +11,7 @@
           bagua-offset))
 
 (define current-yijing-size (make-parameter 60))
-(define current-yijing-chinese-character (make-parameter #t) )
+(define current-yijing-chinese-characters (make-parameter #t) )
 
 (define (append-text! image name)
   (let* ([width (image-width image)]
@@ -22,7 +22,7 @@
     (overlay/offset text 0 (- offset) image)))
 
 (define (append-text img name)
-  (if (current-yijing-chinese-character)
+  (if (current-yijing-chinese-characters)
       (append-text! img name)
       img))
 
@@ -35,7 +35,7 @@
 
 
 (define (taijibagua)
-  (let* ([img (parameterize ([current-yijing-chinese-character #f]) (rotate 180 (taiji)))]
+  (let* ([img (parameterize ([current-yijing-chinese-characters #f]) (rotate 180 (taiji)))]
          [img (above (qian) img)]
          [img (above (kun) (rotate 180 img))]
          [img (above (li) (rotate 90 img))]
@@ -90,25 +90,25 @@
 
 ;; 四象
 (define (taiyang)
-  (let ([img (parameterize ([current-yijing-chinese-character #f])
+  (let ([img (parameterize ([current-yijing-chinese-characters #f])
                (overlay/offset (yang)
                                0 (sixiang-offset)
                                (yang)))])
     (append-text img 'taiyang)))
 (define (shaoyin)
-  (let ([img (parameterize ([current-yijing-chinese-character #f])
+  (let ([img (parameterize ([current-yijing-chinese-characters #f])
                (overlay/offset (yin)
                                0 (sixiang-offset)
                                (yang)))])
     (append-text img 'shaoyin)))
 (define (taiyin)
-  (let ([img (parameterize ([current-yijing-chinese-character #f])
+  (let ([img (parameterize ([current-yijing-chinese-characters #f])
                (overlay/offset (yin)
                                0 (sixiang-offset)
                                (yin)))])
     (append-text img 'taiyin)))
 (define (shaoyang)
-  (let ([img (parameterize ([current-yijing-chinese-character #f])
+  (let ([img (parameterize ([current-yijing-chinese-characters #f])
                (overlay/offset (yang)
                                0 (sixiang-offset)
                                (yin)))])
@@ -116,26 +116,26 @@
 
 ;; 八卦
 (define (qian)
-  (let ([img (parameterize ([current-yijing-chinese-character #f]) (overlay/offset (yang) 0 (bagua-offset) (taiyang)))])
+  (let ([img (parameterize ([current-yijing-chinese-characters #f]) (overlay/offset (yang) 0 (bagua-offset) (taiyang)))])
     (append-text img 'qian)))
 (define (dui)
-  (let ([img (parameterize ([current-yijing-chinese-character #f]) (overlay/offset (yin) 0 (bagua-offset) (taiyang)))])
+  (let ([img (parameterize ([current-yijing-chinese-characters #f]) (overlay/offset (yin) 0 (bagua-offset) (taiyang)))])
     (append-text img 'dui)))
 (define (li)
-  (let ([img (parameterize ([current-yijing-chinese-character #f]) (overlay/offset (yang) 0 (bagua-offset) (shaoyin)))])
+  (let ([img (parameterize ([current-yijing-chinese-characters #f]) (overlay/offset (yang) 0 (bagua-offset) (shaoyin)))])
     (append-text img 'li)))
 (define (zhen)
-  (let ([img (parameterize ([current-yijing-chinese-character #f]) (overlay/offset (yin) 0 (bagua-offset) (shaoyin)))])
+  (let ([img (parameterize ([current-yijing-chinese-characters #f]) (overlay/offset (yin) 0 (bagua-offset) (shaoyin)))])
     (append-text img 'zhen)))
 (define (xun)
-  (let ([img (parameterize ([current-yijing-chinese-character #f]) (overlay/offset (yang) 0 (bagua-offset) (shaoyang)))])
+  (let ([img (parameterize ([current-yijing-chinese-characters #f]) (overlay/offset (yang) 0 (bagua-offset) (shaoyang)))])
     (append-text img 'xun)))
 (define (kan)
-  (let ([img (parameterize ([current-yijing-chinese-character #f]) (overlay/offset (yin) 0 (bagua-offset) (shaoyang)))])
+  (let ([img (parameterize ([current-yijing-chinese-characters #f]) (overlay/offset (yin) 0 (bagua-offset) (shaoyang)))])
     (append-text img 'kan)))
 (define (gen)
-  (let ([img (parameterize ([current-yijing-chinese-character #f]) (overlay/offset (yang) 0 (bagua-offset) (taiyin)))])
+  (let ([img (parameterize ([current-yijing-chinese-characters #f]) (overlay/offset (yang) 0 (bagua-offset) (taiyin)))])
     (append-text img 'gen)))
 (define (kun)
-  (let ([img (parameterize ([current-yijing-chinese-character #f]) (overlay/offset (yin) 0 (bagua-offset) (taiyin)))])
+  (let ([img (parameterize ([current-yijing-chinese-characters #f]) (overlay/offset (yin) 0 (bagua-offset) (taiyin)))])
     (append-text img 'kun)))
