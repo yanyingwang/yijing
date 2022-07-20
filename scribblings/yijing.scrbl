@@ -86,7 +86,11 @@ Constructs Taiyang/太阳, Shaoyin/少阴, Shaoyang/少阳, Taiyin/太阴.
 @defproc[(gen) image?]
 @defproc[(kun) image?]
 )]{
-Constructs Qian/乾(天), Dui/兑(泽), Li/离(火), Zhen/震(雷), Xun/巽(风), Kan/坎(水), Gen/艮(山), Kun/坤(地).
+Constructs Qian/乾(天), Dui/兑(泽), Li/离(火), Zhen/震(雷), Xun/巽(风), Kan/坎(水), Gen/艮(山), Kun/坤(地).@linebreak{}
+乾三连（☰），坤六断（☷）；@linebreak{}
+震仰盂（☳），艮覆碗（☶）； @linebreak{}
+离中虚（☲），坎中满（☵）；@linebreak{}
+兑上缺（☱），巽下断（☴）。@linebreak{}
 @examples[#:eval (the-eval)
 (qian)
 (dui)
