@@ -35,7 +35,7 @@
 
 
 (define (taijibagua)
-  (let* ([img (parameterize ([current-yijing-chinese-characters #f]) (rotate 180 (taiji)))]
+  (let* ([img (parameterize ([current-yijing-chinese-characters #f]) (taiji))]
          [img (above (qian) img)]
          [img (above (kun) (rotate 180 img))]
          [img (above (li) (rotate 90 img))]
